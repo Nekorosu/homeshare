@@ -1,0 +1,125 @@
+# Конфигурация homeshare
+
+# Сетевые настройки
+listen: "127.0.0.1:8090"
+base_url: "https://files.example.duckdns.org"
+
+# Пути к данным
+data_dir: "/srv/media/fileshare/data"
+tmp_dir: "/srv/media/fileshare/tmp"
+db_path: "/srv/media/fileshare/db/homeshare.db"
+backup_dir: "/home/fileshare-backup"
+
+# Локальные сети (без лимитов трафика)
+local_cidrs:
+  - "192.168.32.0/24"
+  - "127.0.0.0/8"
+
+# Логирование
+log:
+  level: "info"
+  audit_retention_days: 180
+  security_log_path: "/var/log/homeshare/security.log"
+  security_log_retention_days: 7
+
+# Лимиты скорости (Mbps)
+speed_limits:
+  external_upload_mbps: 250
+  external_download_mbps: 250
+  burst_mb: 16
+
+# Квоты по умолчанию
+quotas:
+  default_storage_quota_bytes: 107374182400      # 100 GB
+  default_monthly_upload_bytes: 214748364800     # 200 GB
+  default_monthly_download_bytes: 322122547200   # 300 GB
+  default_max_file_size_bytes: 53687091200       # 50 GB
+  default_max_concurrent_uploads: 1
+
+# Трафик
+traffic:
+  upload_wasted_allowance: 0.5
+  download_wasted_allowance: 1.0
+  grace_factor: 0.5  # file_size / 2 для grace проверки
+
+# Rate limits
+rate_limits:
+  admin_login_failed_per_15min: 5
+  admin_totp_failed_per_15min: 5
+  invite_failed_per_15min: 5
+  upload_create_per_hour_person: 10
+  chunk_per_minute_person: 120
+  download_per_minute_person: 120
+  concurrent_downloads_per_person: 2
+  zip_per_hour_person: 5
+
+# Подозрительные расширения
+suspicious_extensions:
+  - exe
+  - msi
+  - msp
+  - bat
+  - cmd
+  - com
+  - scr
+  - vbs
+  - vbe
+  - js
+  - jse
+  - ws
+  - wsf
+  - wsh
+  - ps1
+  - psm1
+  - sh
+  - bash
+  - dll
+  - ocx
+  - jar
+  - apk
+  - hta
+  - cpl
+
+# ZIP настройки
+zip:
+  max_files: 100
+  max_total_bytes: 53687091200  # 50 GB
+  store_mode: true
+
+# Сессии
+sessions:
+  user_idle_days: 30
+  user_absolute_days: 90
+  admin_idle_hours: 12
+  admin_absolute_days: 7
+
+# Invite коды
+invite:
+  default_expires_hours: 24
+  default_max_activations: 1
+
+# Защита диска
+disk:
+  min_free_space_gb: 40
+  critical_free_space_gb: 20
+  min_free_inodes: 100000
+
+# Chunked upload
+upload:
+  chunk_size_bytes: 33554432  # 32 MB
+  min_reservation_ttl_hours: 1
+  max_reservation_ttl_hours: 72
+  ttl_factor: 2.0
+  default_estimated_speed_bps: 2097152  # 2 MB/s
+
+# Безопасность
+security:
+  quarantine_suspicious: true
+  session_secret_env: "HOMESHARE_SESSION_SECRET"
+  ip_hash_salt_env: "HOMESHARE_IP_HASH_SALT"
+
+# Очистка
+cleanup:
+  run_interval_seconds: 60
+  backup_daily: true
+  backup_keep_days: 14
