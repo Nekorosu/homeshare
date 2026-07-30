@@ -1,15 +1,35 @@
 ```
-# Binaries
-*.exe
-*.dll
-*.so
-*.a
+# Compiled and binary files
 *.o
 *.obj
+*.a
+*.lib
+*.so
+*.dll
+*.exe
 *.out
 
-# Go-specific
-homeshare
-*.mod
-*.sum
+# Dependencies
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
+
+# Environment
+.env
+.env.local
+*.env.*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build artifacts
+build/
+dist/
+target/
 ```
