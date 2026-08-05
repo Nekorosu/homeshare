@@ -1,7 +1,6 @@
 package storage
 
 import (
-	"context"
 	"crypto/rand"
 	"encoding/hex"
 	"fmt"

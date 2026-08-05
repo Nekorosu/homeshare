@@ -1,13 +1,20 @@
 ```
-# Compiled and binary files
+# Go build artifacts
 *.o
-*.obj
 *.a
-*.lib
 *.so
-*.dll
 *.exe
-*.out
+*.dll
+*.dylib
+*.test
+*.prof
+
+# Go cache and tools
+.cache/
+go/pkg/
+go-build/
+.gopath/
+.gocache/
 
 # Dependencies
 vendor/
@@ -20,7 +27,7 @@ vendor/
 # Environment
 .env
 .env.local
-*.env.*
+.env.*
 
 # Editors
 .vscode/
@@ -28,8 +35,137 @@ vendor/
 *.swp
 *.swo
 
-# Build artifacts
-build/
+# Coverage
+coverage/
+htmlcov/
+.coverage
+
+# Build and distribution
 dist/
+build/
 target/
+bin/
+out/
+
+# Python artifacts (if mixed project)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.coverage
+.nox/
+$py.class
+.spyderproject
+.spyproject
+.ropeproject
+.pytest_cache/
+.mypy_cache/
+.hypothesis/
+.eggs/
+*.egg-info/
+.installed.cfg
+.PATH
+.cover
+.pyxpickle/
+.pyre/
+.pytype/
+cython_debug/
+
+# Node artifacts (if mixed project)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp/
+.pnp.js
+node_modules/.bin/
+.jscad/
+.npm/
+.npmrc
+.eslintcache
+.node_repl_history
+*.tgz
+
+# Java artifacts (if mixed project)
+*.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
+replay_pid*
+
+# Ruby artifacts (if mixed project)
+*.gem
+*.rbc
+.bundle/
+.config/yardoc
+_yardoc
+.rspec
+Gemfile.lock
+pkg/
+spec/reports/
+test/tmp/
+test/version_tmp/
+tmp/
+
+# C/C++ artifacts (if mixed project)
+*.i
+*.s
+*.mod
+*.smod
+*.ko
+*.o.d
+*.so.*
+*.a.*
+*.da
+*.lo
+*.la
+.so
+.la
+.lai
+.libs/
+.libs-hidden/
+.libs/
+.libs-hidden/
+
+# Compression
+*.zip
+*.gz
+*.tar
+*.tgz
+*.bz2
+*.xz
+*.7z
+*.rar
+*.Z
+*.lz
+*.lzo
+*.tar.gz
+*.tar.bz2
+*.tar.xz
+*.tar.zst
+*.lz4
+*.lzh
+*.cab
+*.arj
+*.rpm
+*.deb
+*.zst
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 ```

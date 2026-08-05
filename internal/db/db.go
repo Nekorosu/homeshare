@@ -95,7 +95,7 @@ func (d *DB) Backup(ctx context.Context, backupPath string) error {
 	_, err := d.ExecContext(ctx, `VACUUM INTO ?`, backupPath)
 	if err != nil {
 		// Fallback to simple copy if VACUUM INTO not supported
-		src, err := os.Open(d.Driver().(*sqlite.Driver).DatabaseName())
+		src, err := os.Open(d.DB.Driver().(*sqlite.Driver).DataSourceName())
 		if err != nil {
 			return fmt.Errorf("open source: %w", err)
 		}
