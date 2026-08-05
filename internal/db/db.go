@@ -7,8 +7,6 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
-
-	"modernc.org/sqlite"
 )
 
 //go:embed schema.sql
@@ -95,7 +93,14 @@ func (d *DB) Backup(ctx context.Context, backupPath string) error {
 	_, err := d.ExecContext(ctx, `VACUUM INTO ?`, backupPath)
 	if err != nil {
 		// Fallback to simple copy if VACUUM INTO not supported
-		src, err := os.Open(d.DB.Driver().(*sqlite.Driver).DataSourceName())
+		// Get the database path from the connection
+		var dbPath string
+		err := d.QueryRowContext(ctx, `PRAGMA database_list`).Scan(&dbPath)
+		if err != nil {
+			return fmt.Errorf("get db path: %w", err)
+		}
+		
+		src, err := os.Open(dbPath)
 		if err != nil {
 			return fmt.Errorf("open source: %w", err)
 		}
